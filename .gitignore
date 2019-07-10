@@ -2,6 +2,7 @@
 
 env
 nltk_data
+node_modules
 
 *.zip
 *.csv
