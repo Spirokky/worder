@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <Header />
+    <Header class="header" />
     <Home />
   </div>
 </template>
 
 <script>
-import Header from './components/Header/Header.vue';
-import Home from './components/Home/Home.vue';
+import Header from './components/header/header.vue';
+import Home from './components/home/home.vue';
 
-import './assets/style.scss';
+import './assets/scss/main.scss';
 
 export default {
   name: 'app',
@@ -19,5 +19,3 @@ export default {
   }
 };
 </script>
-
-<style></style>

@@ -1,11 +1,18 @@
 <template>
-  <p>home page</p>
+  <div>
+    <Worder />
+  </div>
 </template>
 
 <script>
+import Worder from '../worder/index';
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    Worder
+  }
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+</style>

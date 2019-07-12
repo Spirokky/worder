@@ -1,5 +1,12 @@
 <template>
-  <p>header</p>
+  <header>
+    <b-container>
+      <b-nav align="right">
+        <b-nav-item href="https://github.com">Github</b-nav-item>
+        <b-nav-item href="https://github.com">Telegram</b-nav-item>
+      </b-nav>
+    </b-container>
+  </header>
 </template>
 
 <script>
@@ -8,4 +15,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+</style>
