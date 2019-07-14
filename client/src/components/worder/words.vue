@@ -13,7 +13,7 @@
         <div>{{detailText}}</div>
       </b-col>
 
-      <b-col class="words-col d-none d-md-block" md="2">misc</b-col>
+      <b-col class="words-col d-none d-md-block" md="2"></b-col>
     </b-row>
   </b-container>
 </template>
@@ -23,12 +23,9 @@ export default {
   name: 'Words',
   data() {
     return {
-      words: ['hello', 'world'],
+      words: [],
       detailText: '',
-      detail: {
-        hello: 'detail description for hello',
-        world: 'detail description for world'
-      }
+      detail: {}
     };
   },
   filters: {

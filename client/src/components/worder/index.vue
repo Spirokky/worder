@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-container>
-      <p>Worder component</p>
+      <h2 class="worder-heading">
+        Upload text file.
+        <br />Extract rare english words.
+      </h2>
     </b-container>
     <FileInput />
     <Words />
@@ -21,4 +24,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.worder-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 </style>
