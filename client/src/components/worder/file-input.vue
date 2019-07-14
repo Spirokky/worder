@@ -22,7 +22,7 @@
         <!-- READY -->
         <div v-if="isReady">
           <p class="filename">{{file.name}}</p>
-          <b-button variant="success" class="upload-btn" @click="send">Upload</b-button>
+          <b-button variant="success" class="upload-btn" @click="send(formData)">Upload</b-button>
         </div>
 
         <!-- FAILED -->
