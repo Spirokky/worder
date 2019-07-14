@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const example = require('./routes/api/example');
+const upload = require('./routes/api/upload');
 
 const { NODE_ENV, NODE_PORT } = process.env;
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api/example', example);
+app.use('/api/upload', upload);
 
 if (NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'build/')));
