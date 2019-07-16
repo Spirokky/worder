@@ -1,13 +1,10 @@
 <template>
   <div>
     <b-container>
-      <h2 class="worder-heading">
-        Upload text file.
-        <br />Extract rare english words.
-      </h2>
+      <h2 class="worder-heading">Upload .srt file</h2>
     </b-container>
-    <FileInput />
-    <Words />
+    <FileInput @populate-words="populateWords" />
+    <Words :words="words" />
   </div>
 </template>
 
@@ -19,6 +16,16 @@ export default {
   components: {
     FileInput,
     Words
+  },
+  data() {
+    return {
+      words: null
+    };
+  },
+  methods: {
+    populateWords(words) {
+      this.words = words;
+    }
   }
 };
 </script>

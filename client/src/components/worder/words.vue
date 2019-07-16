@@ -9,8 +9,8 @@
         </ul>
       </b-col>
 
-      <b-col class="words-col word-detail" :class="detailText ? 'bordered' : null" cols="10" md="8">
-        <div>{{detailText}}</div>
+      <b-col class="words-col word-detail" :class="{active: 'bordered'}" cols="10" md="8">
+        <div>{{detail[active] ? detail[active] : null}}</div>
       </b-col>
 
       <b-col class="words-col d-none d-md-block" md="2"></b-col>
@@ -23,11 +23,12 @@ export default {
   name: 'Words',
   data() {
     return {
-      words: [],
       detailText: '',
+      active: '',
       detail: {}
     };
   },
+  props: ['words'],
   filters: {
     lowercase: function(value) {
       if (!value) return '';

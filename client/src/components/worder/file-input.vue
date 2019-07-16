@@ -41,7 +41,6 @@
 import FileIcon from 'vue-material-design-icons/FileUploadOutline.vue';
 import FileCheckIcon from 'vue-material-design-icons/FileCheckOutline.vue';
 import { upload } from './file-upload.service';
-import { wait } from './utils';
 
 import '../../assets/scss/main.scss';
 
@@ -92,10 +91,10 @@ export default {
     send(formData) {
       this.currentStatus = STATUS_UPLOADING;
       upload(formData)
-        .then(wait(1500))
         .then(res => {
-          this.uploaded = res;
+          this.uploaded = res.success;
           this.currentStatus = STATUS_UPLOADED;
+          this.$emit('populate-words', res.words);
         })
         .catch(err => {
           this.uploadError = err.response;
