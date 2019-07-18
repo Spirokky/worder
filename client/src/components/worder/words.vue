@@ -13,12 +13,17 @@
         <div>{{detail[active] ? detail[active] : null}}</div>
       </b-col>
 
-      <b-col class="words-col d-none d-md-block" md="2"></b-col>
+      <b-col class="words-col d-none d-md-block" md="2">
+        <b-button @click="lingvo">Click</b-button>
+      </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
+import { getLingvoWord } from './utils';
+import LingvoAPI from '../../utils/LingvoAPI';
+
 export default {
   name: 'Words',
   data() {
@@ -42,6 +47,20 @@ export default {
     },
     handleWordClick: function(word) {
       this.displayWordDetail(word);
+    },
+    parseWords() {
+      if (!this.words) return;
+      this.words.map(word => {
+        getLingvoWord(word).then(res => {
+          this.detail[word] = res;
+        });
+      });
+    },
+    lingvo() {
+      const api = new LingvoAPI({
+        key:
+          'MTU1MzE2ZDgtYjhiYi00MjYzLWJjNTUtMjJjNGJmYWQ5YWY0OjhiOTRiNzg2ODQ3NjQ5ZTU4ZTg3MTI1YmY1NWUwNmQ0'
+      });
     }
   }
 };
