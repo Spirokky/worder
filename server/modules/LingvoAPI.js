@@ -25,9 +25,6 @@ class LingvoAPI {
 
   translate(text, cb, ...args) {
     const { srcLang = 1033, dstLang = 1049, isCaseSensitive = false } = args;
-    // const srcLang = args.srcLang || 1033;
-    // const dstLang = args.dstLang || 1049;
-    // const isCaseSensitive = args.isCaseSensitive || false;
     const options = {
       method: 'GET',
       url: `${this.BASE_URL}/api/v1/Translation?text=${text}&srcLang=${srcLang}&dstLang=${dstLang}&isCaseSensitive=${isCaseSensitive}`,
@@ -38,28 +35,88 @@ class LingvoAPI {
     request(options, cb);
   }
 
-  wordList(text) {
-    return this.BASE_URL;
+  wordList(prefix, cb, ...args) {
+    const { srcLang = 1033, dstLang = 1049, pageSize = 10, startPos } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/WordList?prefix=${prefix}&srcLang=${srcLang}&dstLang=${dstLang}&pageSize=${pageSize}&startPos=${startPos}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 
-  minicard(text) {
-    return this.BASE_URL;
+  minicard(text, cb, ...args) {
+    const { srcLang = 1033, dstLang = 1049 } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Minicard?text=${text}&srcLang=${srcLang}&dstLang=${dstLang}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 
-  search(text) {
-    return this.BASE_URL;
+  search(text, cb, ...args) {
+    const { srcLang = 1033, dstLang = 1049, searchZone = 15, startIndex = 0, pageSize = 10 } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Search?text=${text}&srcLang=${srcLang}&dstLang=${dstLang}&searchZone=${searchZone}&startIndex=${startIndex}&pageSize=${pageSize}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 
-  article(text) {
-    return this.BASE_URL;
+  article(heading, cb, ...args) {
+    const { srcLang = 1033, dstLang = 1049, dict = 'Electronics%20(En-Ru)' } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Article?heading=${heading}&dict=${dict}&srcLang=${srcLang}&dstLang=${dstLang}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 
-  wordForms(text) {
-    return this.BASE_URL;
+  wordForms(text, cb, ...args) {
+    const { srcLang = 1033, dstLang = 1049 } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Suggests?text=${text}&srcLang=${srcLang}&dstLang=${dstLang}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 
-  sound(text) {
-    return this.BASE_URL;
+  suggest(text, cb, ...args) {
+    const { dictionaryName = 'LingvoUniversal%20(En-Ru)', fileName = 'bang.wav' } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Sound?dictionaryName=${dictionaryName}&fileName=${fileName}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
+  }
+
+  sound(text, cb, ...args) {
+    const { dictionaryName = 'LingvoUniversal%20(En-Ru)', fileName = 'bang.wav' } = args;
+    const options = {
+      method: 'GET',
+      url: `${this.BASE_URL}/api/v1/Sound?dictionaryName=${dictionaryName}&fileName=${fileName}`,
+      headers: {
+        Authorization: `Bearer ${this.API_TOKEN}`
+      }
+    };
+    request(options, cb);
   }
 }
 
