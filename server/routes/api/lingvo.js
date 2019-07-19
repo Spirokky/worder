@@ -7,7 +7,13 @@ lingvo.authorize();
 
 router.get('/translate/:word', (req, res) => {
   lingvo.translate(req.params.word, (err, response, body) => {
-    res.send({ params: req.params, body: JSON.parse(body) });
+    res.send({ body: JSON.parse(body) });
+  });
+});
+
+router.get('/minicard/:word', (req, res) => {
+  lingvo.minicard(req.params.word, (err, response, body) => {
+    res.send({ body: JSON.parse(body) });
   });
 });
 
