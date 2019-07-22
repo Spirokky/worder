@@ -1,11 +1,11 @@
 const parseWordList = obj => {
-  const result = { data: [] };
+  const result = [];
   result.prefix = obj.Prefix;
 
   const headings = obj.Headings;
 
   Object.entries(headings).forEach(val => {
-    result.data.push({
+    result.push({
       text: val[1].Heading,
       translation: val[1].Translation,
       soundName: val[1].SoundName
