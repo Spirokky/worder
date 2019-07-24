@@ -3,27 +3,31 @@
     <b-row class="words-row">
       <!-- TABS -->
       <b-col class="words-col words-list" cols="12" lg="10" offset-lg="1">
-        <b-card no-body>
+        <b-card no-body class="words-card" :class="{visible: isVisible}">
           <b-tabs
             pills
             card
             vertical
-            active-nav-item-class="tab-nav-active"
-            active-tab-class="tab-item-active"
-            content-class="tab-content"
+            active-nav-item-class="word-item-active"
+            active-tab-class="word-tab-active"
+            content-class="words-tabs"
           >
             <b-tab v-for="(value, word, index) in detail" :key="index" :title="word">
-              <b-card-title>
+              <b-card-title class="word-heading">
                 {{word}}
-                <span class="sound">
+                <div class="icon-sound">
                   <VolumeHigh />
-                </span>
+                </div>
               </b-card-title>
-              <p>{{ detail[word].card.translation }}</p>
-              <ul v-for="(val, item, index) in detail[word].list" :key="index">
-                <li>
-                  <i>{{val.text}}</i>
-                  - {{val.translation}}
+              <p class="word-main-translation">{{ detail[word].card.translation }}</p>
+              <ul class="wordlist">
+                <li
+                  v-for="(val, item, index) in detail[word].list"
+                  :key="index"
+                  class="wordlist-item"
+                >
+                  <span class="wordlist-accent">{{val.text}}</span>
+                  <p class="wordlist-translation">{{val.translation}}</p>
                 </li>
               </ul>
               <!-- <pre>{{ JSON.stringify(value, null, 4) }}</pre> -->
@@ -61,7 +65,8 @@ export default {
       detailText: null,
       detailLoading: false,
       active: false,
-      detail: {}
+      detail: {},
+      isVisible: false
     };
   },
   props: ['words'],
@@ -109,6 +114,7 @@ export default {
         this.createDetail(val);
         this.detail[val].card = await this.getMinicard(val);
         this.detail[val].list = await this.getWordList(val);
+        this.isVisible = true;
         this.$forceUpdate();
       });
     }
@@ -120,45 +126,66 @@ export default {
 $border-color: #b1b1b1;
 
 .words-row {
-  min-height: 50vh;
+  // min-height: 50vh;
 }
 
 .words-list {
-  ul {
-    padding: 0;
-    list-style: none;
-    text-align: right;
+  .words-card {
+    border-radius: 0;
+    display: none;
 
-    li {
-      margin-bottom: 0.3rem;
+    &.visible {
+      display: block;
+    }
 
-      span {
-        position: relative;
+    .word-heading {
+      font-size: 2rem;
 
-        &:after {
-          content: '';
-          width: 0%;
-          height: 1px;
-          background-color: $border-color;
-          position: absolute;
-          right: 0;
-          bottom: -1px;
-          transition: all 0.3s ease;
+      .icon-sound {
+        color: rgba(0, 0, 0, 0.54);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-block;
+
+        span > svg {
+          bottom: -7px;
         }
 
-        &:hover {
-          cursor: pointer;
-          &:after {
-            width: 100%;
-          }
-        }
-
-        &.active {
-          &:after {
-            width: 100%;
-          }
+        &:hover,
+        &:focus {
+          color: #000;
         }
       }
+    }
+
+    .word-main-translation {
+      font-size: 1.1rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .wordlist {
+      list-style: none;
+      padding-left: 0;
+      color: #282828;
+
+      .wordlist-accent {
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.94);
+      }
+
+      .wordlist-translation {
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+
+    .word-item-active {
+    }
+
+    .word-tab-active {
+    }
+
+    .words-tabs {
     }
   }
 }

@@ -31,9 +31,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', upload.single('file'), async (req, res) => {
-  const result = { success: null, status: null, error: null, words: [] };
-  // const result = { success: true, status: 200, error: null, words: ['hello', 'world', 'word'] };
-  // return res.status(200).send(result);
+  // const result = { success: null, status: null, error: null, words: [] };
+  const result = { success: true, status: 200, error: null, words: ['unique', 'sky', 'bridge'] };
+  return res.status(200).send(result);
 
   const file = req.file;
 
