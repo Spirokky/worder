@@ -1,8 +1,5 @@
 <template>
   <div>
-    <b-container>
-      <h2 class="worder-heading">Upload .srt file</h2>
-    </b-container>
     <FileInput @populate-words="populateWords" />
     <Words :words="words" />
   </div>
