@@ -11,6 +11,7 @@
             active-nav-item-class="word-item-active"
             active-tab-class="word-tab-active"
             content-class="words-tabs"
+            nav-wrapper-class="words-nav"
           >
             <b-tab v-for="(value, word, index) in detail" :key="index" :title="word">
               <b-card-title class="word-heading">
@@ -30,23 +31,10 @@
                   <p class="wordlist-translation">{{val.translation}}</p>
                 </li>
               </ul>
-              <!-- <pre>{{ JSON.stringify(value, null, 4) }}</pre> -->
             </b-tab>
           </b-tabs>
         </b-card>
       </b-col>
-      <!-- <b-col class="words-col words-list" cols="2" md="2">
-        <ul>
-          <li v-for="(word, index) in words" :key="index">
-            <span v-on:click="handleWordClick(word)">{{word | lowercase}}</span>
-          </li>
-        </ul>
-      </b-col>
-
-      <b-col class="words-col word-detail" :class="{active: 'bordered'}" cols="10" md="8">
-        <b-spinner v-if="detailLoading" label="Loading..." class="detail-word-loading"></b-spinner>
-        <div></div>
-      </b-col>-->
     </b-row>
   </b-container>
 </template>
@@ -122,17 +110,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $border-color: #b1b1b1;
 
-.words-row {
-  // min-height: 50vh;
-}
-
 .words-list {
+  max-height: 95vh;
+  margin-bottom: 1rem;
+  overflow: hidden;
+
   .words-card {
     border-radius: 0;
     display: none;
+    max-height: inherit;
 
     &.visible {
       display: block;
@@ -156,6 +145,25 @@ $border-color: #b1b1b1;
           color: #000;
         }
       }
+    }
+
+    .tabs {
+      max-height: inherit;
+    }
+
+    .words-nav {
+      max-height: inherit;
+      overflow: hidden;
+
+      ul {
+        display: block;
+        overflow-y: scroll;
+      }
+    }
+
+    .words-tabs {
+      max-height: inherit;
+      overflow-y: scroll;
     }
 
     .word-main-translation {

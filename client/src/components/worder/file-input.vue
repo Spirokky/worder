@@ -2,16 +2,11 @@
   <b-container>
     <b-row>
       <b-col cols="12" lg="10" offset-lg="1">
-        <form
-          class="file-drop-form"
-          :class="{collapsed: uploaded}"
-          enctype="multipart/form-data"
-          novalidate
-        >
+        <form class="file-drop-form" enctype="multipart/form-data" novalidate>
           <b-form-file
             class="file-input"
             v-model="file"
-            placeholder="Choose a subtitles file..."
+            placeholder="Choose any subtitles file..."
             drop-placeholder="Drop file here..."
             type="file"
             name="file"
@@ -126,10 +121,6 @@ export default {
   transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
-
-  &.collapsed {
-    min-height: 0vh;
-  }
 
   .file-input {
     margin-bottom: 2rem;
