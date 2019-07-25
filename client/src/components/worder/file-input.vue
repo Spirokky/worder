@@ -124,10 +124,8 @@ export default {
 
 .file-drop-form {
   transition: all 0.5s ease;
-  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 
   &.collapsed {
     min-height: 0vh;
