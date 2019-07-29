@@ -48,9 +48,10 @@ def frequency(tokens):
     #     if row['frequency'] > 1 & row['frequency'] < 10:
     #         print(row['word'])
 
-    return ctr_df_short
+    return ctr_df_short[0:15:]
 
 
+# unnecessary legacy
 def translate(df):
     df['translation'] = ' '
     df['translation'] = df['word'].apply(
