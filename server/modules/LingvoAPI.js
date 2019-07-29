@@ -36,7 +36,7 @@ class LingvoAPI {
   }
 
   wordList(prefix, cb, ...args) {
-    const { srcLang = 1033, dstLang = 1049, pageSize = 30, startPos = '' } = args;
+    const { srcLang = 1033, dstLang = 1049, pageSize = 5, startPos = '' } = args;
     const options = {
       method: 'GET',
       url: `${this.BASE_URL}/api/v1/WordList?prefix=${prefix}&srcLang=${srcLang}&dstLang=${dstLang}&pageSize=${pageSize}&startPos=${startPos}`,
