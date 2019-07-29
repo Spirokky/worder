@@ -16,7 +16,7 @@
             <b-tab v-for="(value, word, index) in detail" :key="index" :title="word">
               <b-card-title class="word-heading">
                 {{word}}
-                <div class="icon-sound">
+                <div class="icon-sound" hidden>
                   <VolumeHigh />
                 </div>
               </b-card-title>
@@ -114,14 +114,11 @@ export default {
 $border-color: #b1b1b1;
 
 .words-list {
-  max-height: 95vh;
   margin-bottom: 1rem;
-  overflow: hidden;
 
   .words-card {
     border-radius: 0;
     display: none;
-    max-height: inherit;
 
     &.visible {
       display: block;
@@ -145,25 +142,6 @@ $border-color: #b1b1b1;
           color: #000;
         }
       }
-    }
-
-    .tabs {
-      max-height: inherit;
-    }
-
-    .words-nav {
-      max-height: inherit;
-      overflow: hidden;
-
-      ul {
-        display: block;
-        overflow-y: scroll;
-      }
-    }
-
-    .words-tabs {
-      max-height: inherit;
-      overflow-y: scroll;
     }
 
     .word-main-translation {
