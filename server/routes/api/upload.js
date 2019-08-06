@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const childProcess = require('child_process');
 
-const PYTHON_EXECUTABLE = path.resolve(__dirname, '../../../env/Scripts/python.exe');
+const PYTHON_EXECUTABLE = path.resolve(__dirname, '../../../env/bin/python3');
 const PYTHON_SCRIPT = path.resolve(__dirname, '../../script.py');
 
 const storage = multer.diskStorage({
