@@ -46,4 +46,6 @@ def frequency(tokens):
 if __name__ == "__main__":
     tokens = parse_text(sys.argv[1])
     df = frequency(tokens)
-    sys.stdout.write(df.to_string(columns=['word'], index=False))
+    df = df.get('word').to_numpy()
+    df = " ".join(df)
+    sys.stdout.write(df)
