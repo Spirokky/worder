@@ -4,7 +4,7 @@ import pandas as pd
 import sys
 import re
 
-from nltk.corpus import gutenberg, brown, wordnet
+from nltk.corpus import gutenberg,  wordnet
 
 
 def parse_text(textFile):
