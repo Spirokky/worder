@@ -1,3 +1,2 @@
 nltk
 pandas
-py_translator
