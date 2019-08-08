@@ -13,10 +13,15 @@ def parse_text(textFile):
     with open(textFile, 'r') as f:
         text = f.read()
 
-    clean_text = (re.sub('[^a-zA-Z]+', ' ', text.replace('\n', ' '))).lower()
+    text = text.replace('\n', ' ').lower()
+    clean_text = (re.sub('[^a-zA-Z]+', ' ', text))
     tokens = nltk.word_tokenize(clean_text)
-    long_tokens = [x for x in tokens if len(x) > 2 if wordnet.synsets(x)]
-
+    long_tokens = [
+        x for x in tokens
+        if len(x) > 2
+        if x != 'www'
+        if wordnet.synsets(x)
+    ]
     return long_tokens
 
 
@@ -30,7 +35,7 @@ def frequency(tokens):
     # ctr(frequency) from corpus
     news_text = gutenberg.words()
     ctr_df['frequency'] = 0
-    fdist = nltk.FreqDist(w.lower() for w in news_text)
+    fdist = nltk.FreqDist(w for w in news_text)
     words = list(ctr_df['word'].to_numpy())
 
     for word in words:
