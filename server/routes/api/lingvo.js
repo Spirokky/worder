@@ -5,7 +5,6 @@ const { parseWordList, parseMinicard } = require('../../modules/lingvoparser');
 const router = express.Router();
 
 const lingvo = new LingvoAPI();
-lingvo.authorize();
 
 router.get('/translate/:word', (req, res) => {
   lingvo.translate(req.params.word, (err, response, body) => {

@@ -6,6 +6,8 @@ class LingvoAPI {
     this.BASE_URL = config.lingvo.BASE_URL;
     this.API_KEY = config.lingvo.API_KEY;
     this.API_TOKEN = null;
+    this.lastUpdate = null;
+    this.tokenExpire = 23 * 60 * 60 * 1000;
     this.authorize();
   }
 
@@ -20,10 +22,18 @@ class LingvoAPI {
     request(options, (err, res, body) => {
       if (err) throw err;
       this.API_TOKEN = body;
+      this.lastUpdate = Date.now();
     });
   }
 
+  updateToken() {
+    if (Date.now() - this.lastUpdate >= this.tokenExpire) {
+      this.authorize();
+    }
+  }
+
   translate(text, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049, isCaseSensitive = '' } = args;
     const options = {
       method: 'GET',
@@ -36,6 +46,7 @@ class LingvoAPI {
   }
 
   wordList(prefix, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049, pageSize = 5, startPos = '' } = args;
     const options = {
       method: 'GET',
@@ -48,6 +59,7 @@ class LingvoAPI {
   }
 
   minicard(text, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049 } = args;
     const options = {
       method: 'GET',
@@ -60,6 +72,7 @@ class LingvoAPI {
   }
 
   search(text, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049, searchZone = 15, startIndex = 0, pageSize = 10 } = args;
     const options = {
       method: 'GET',
@@ -72,6 +85,7 @@ class LingvoAPI {
   }
 
   article(heading, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049, dict = 'Electronics%20(En-Ru)' } = args;
     const options = {
       method: 'GET',
@@ -84,6 +98,7 @@ class LingvoAPI {
   }
 
   wordForms(text, cb, ...args) {
+    this.updateToken();
     const { srcLang = 1033, dstLang = 1049 } = args;
     const options = {
       method: 'GET',
@@ -96,6 +111,7 @@ class LingvoAPI {
   }
 
   suggest(text, cb, ...args) {
+    this.updateToken();
     const { dictionaryName = 'LingvoUniversal%20(En-Ru)', fileName = 'bang.wav' } = args;
     const options = {
       method: 'GET',
@@ -108,6 +124,7 @@ class LingvoAPI {
   }
 
   sound(text, cb, ...args) {
+    this.updateToken();
     const { dictionaryName = 'LingvoUniversal%20(En-Ru)', fileName = 'bang.wav' } = args;
     const options = {
       method: 'GET',
