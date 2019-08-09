@@ -22,10 +22,6 @@ const uint8arrayToString = data => {
   return String.fromCharCode.apply(null, data);
 };
 
-const cleanStrings = str => {
-  return str.match(/[\w]+/gi);
-};
-
 router.get('/', async (req, res) => {
   res.send('GET request');
 });
@@ -50,8 +46,8 @@ router.post('/', upload.single('file'), async (req, res) => {
   const scriptExecution = spawn(PYTHON_EXECUTABLE, [PYTHON_SCRIPT, filePath]);
 
   scriptExecution.stdout.on('data', data => {
-    const wordsArray = cleanStrings(uint8arrayToString(data));
-    result.words = result.words.concat(wordsArray.slice(1));
+    const wordsArray = uint8arrayToString(data).split(" ");
+    result.words = result.words.concat(wordsArray);
     result.success = true;
   });
 
