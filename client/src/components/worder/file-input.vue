@@ -135,6 +135,7 @@ export default {
     overflow: hidden;
     transition: max-height 1s ease;
     max-height: 0;
+    margin-bottom: 2rem;
 
     &.visible {
       max-height: 100px;
