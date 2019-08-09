@@ -1,5 +1,5 @@
 <template>
-  <b-container class="words">
+  <b-container v-if="isVisible" class="words">
     <b-row class="words-row">
       <!-- TABS -->
       <b-col class="words-col words-list" cols="12" lg="10" offset-lg="1">
@@ -91,15 +91,12 @@ export default {
         .then(res => res.data)
         .then(res => res.body)
         .catch(err => err);
-    },
-    createDetail(word) {
-      if (!this.detail[word]) this.detail[word] = {};
     }
   },
   watch: {
     words: function(upd) {
       upd.forEach(async val => {
-        this.createDetail(val);
+        if (!this.detail[val]) this.detail[val] = {};
         this.detail[val].card = await this.getMinicard(val);
         this.detail[val].list = await this.getWordList(val);
         this.isVisible = true;
@@ -163,15 +160,6 @@ $border-color: #b1b1b1;
         font-weight: 400;
         color: rgba(0, 0, 0, 0.54);
       }
-    }
-
-    .word-item-active {
-    }
-
-    .word-tab-active {
-    }
-
-    .words-tabs {
     }
   }
 }
