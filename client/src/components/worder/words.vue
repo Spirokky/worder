@@ -1,5 +1,5 @@
 <template>
-  <b-container v-if="isVisible" class="words">
+  <b-container class="words">
     <b-row class="words-row">
       <!-- TABS -->
       <b-col class="words-col words-list" cols="12" lg="10" offset-lg="1">
@@ -91,17 +91,37 @@ export default {
         .then(res => res.data)
         .then(res => res.body)
         .catch(err => err);
+    },
+    async insertWord(word) {
+      const card = await this.getMinicard(word);
+      const list = await this.getWordList(word);
+      const detail = { ...this.detail[word], card, list };
+      this.detail[word] = detail;
+      this.isVisible = true;
+      this.$forceUpdate();
+      return detail;
     }
   },
   watch: {
-    words: function(upd) {
-      upd.forEach(async val => {
-        if (!this.detail[val]) this.detail[val] = {};
-        this.detail[val].card = await this.getMinicard(val);
-        this.detail[val].list = await this.getWordList(val);
-        this.isVisible = true;
-        this.$forceUpdate();
-      });
+    words: async function(upd) {
+      await Promise.all(
+        upd.map(async val => {
+          const detail = await this.insertWord(val);
+          console.log(detail);
+        })
+      );
+
+      // for (const val of upd) {
+      //   if (!this.detail[val]) this.detail[val] = {};
+      //   this.detail[val].card = await this.getMinicard(val);
+      //   this.detail[val].list = await this.getWordList(val);
+      //   this.isVisible = true;
+      //   this.$forceUpdate();
+      // }
+
+      // upd.forEach(async val => {
+
+      // });
     }
   }
 };
