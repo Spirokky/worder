@@ -10,10 +10,10 @@
         </b-nav-item>
       </b-nav>
     </b-container>
-    <b-modal id="modal-1" size="lg" title="SubWord" hide-footer>
+    <b-modal id="modal-1" size="lg" title="Worder" hide-footer>
       <p
         class="my-4"
-      >SubWord is the tool that helps you to watch the media without subtitles. It takes subtitles file and analyze text to extract most rarely using words from it and translate them.</p>
+      >Worder is the tool that helps you to watch the media without subtitles. It takes subtitles file and analyze text to extract most rarely using words from it and translate them.</p>
 
       <p>
         <a href="https://developers.lingvolive.com">Translated by Lingvo</a>
