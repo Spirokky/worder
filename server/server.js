@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const upload = require('./routes/api/upload');
 const lingvo = require('./routes/api/lingvo');
+const dictionary = require('./routes/api/dictionary');
 
 const { NODE_ENV, NODE_PORT } = process.env;
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use('/api/upload', upload);
 app.use('/api/lingvo', lingvo);
+app.use('/api/dictionary', dictionary);
 
 if (NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'build/')));
