@@ -8,11 +8,11 @@
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["warning"],
     "linebreak-style": 0,
     "require-jsdoc": 0,
     "new-cap": 0,
