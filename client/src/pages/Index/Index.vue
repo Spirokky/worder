@@ -1,9 +1,16 @@
 <template>
-  <div>Index page</div>
+  <div>
+    <Worder />
+  </div>
 </template>
 
 <script>
+import Worder from '../../components/worder/index';
+
 export default {
-  name: 'Home'
+  name: 'Index',
+  components: {
+    Worder
+  }
 };
 </script>
