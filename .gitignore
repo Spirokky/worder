@@ -14,3 +14,6 @@ server/config/config.js
 *.srt
 *.txt
 !requirements.txt
+
+wtf.js
+skyeng.json
