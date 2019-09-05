@@ -12,7 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": ["warning"],
+    "prettier/prettier": 1,
     "linebreak-style": 0,
     "require-jsdoc": 0,
     "new-cap": 0,
