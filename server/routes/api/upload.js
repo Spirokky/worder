@@ -27,9 +27,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', upload.single('file'), async (req, res) => {
-  const result = { success: null, status: null, error: null, words: [] };
-  // const result = { success: true, status: 200, error: null, words: ['unique', 'sky', 'bridge'] };
-  // return res.status(200).send(result);
+  // const result = { success: null, status: null, error: null, words: [] };
+  const result = { success: true, status: 200, error: null, words: ['abuse', 'sky', 'language'] };
+  return res.status(200).send(result);
 
   const file = req.file;
 
@@ -46,7 +46,7 @@ router.post('/', upload.single('file'), async (req, res) => {
   const scriptExecution = spawn(PYTHON_EXECUTABLE, [PYTHON_SCRIPT, filePath]);
 
   scriptExecution.stdout.on('data', data => {
-    const wordsArray = uint8arrayToString(data).split(" ");
+    const wordsArray = uint8arrayToString(data).split(' ');
     result.words = result.words.concat(wordsArray);
     result.success = true;
   });
