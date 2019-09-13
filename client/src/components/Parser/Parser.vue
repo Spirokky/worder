@@ -1,7 +1,7 @@
 <template>
   <div>
-    <FileInput @populate-words="populateWords" />
-    <Wordlist :words="words" />
+    <FileInput />
+    <Wordlist />
   </div>
 </template>
 
@@ -14,16 +14,6 @@ export default {
   components: {
     FileInput,
     Wordlist
-  },
-  data() {
-    return {
-      words: null
-    };
-  },
-  methods: {
-    populateWords(words) {
-      this.words = words;
-    }
   }
 };
 </script>

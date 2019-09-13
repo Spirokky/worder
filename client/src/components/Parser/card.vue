@@ -1,9 +1,7 @@
 <template>
   <b-row class="words-row">
-    <!-- <button @click="addLS">add LS</button>
-    <button @click="parseLS">parse LS</button>-->
     <b-col class="words-col words-list" cols="12" lg="10" offset-lg="1">
-      <b-card no-body class="words-card" :class="{visible: true}">
+      <b-card no-body class="words-card" :class="{visible: allWords.success}">
         <b-tabs
           pills
           card
@@ -13,7 +11,7 @@
           content-class="words-tabs"
           nav-wrapper-class="words-nav"
         >
-          <b-tab v-for="(word, index) in wordlist" :key="index" :title="word">
+          <b-tab v-for="(word, index) in allWords.words" :key="index" :title="word">
             <div v-if="content[word]">
               <section class="meaning" v-for="(value, key, index) in content[word]" :key="index">
                 <h4 class="meaning__heading">
@@ -73,17 +71,16 @@
 <script>
 import axios from 'axios';
 import VolumeHigh from 'vue-material-design-icons/VolumeHigh';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Card',
-  props: ['wordlist'],
   components: {
     VolumeHigh
   },
   data() {
     return {
-      content: {},
-      storage: window.localStorage
+      content: {}
     };
   },
   methods: {
@@ -96,20 +93,12 @@ export default {
     playSound: src => {
       const audio = new Audio(`https:${src}`);
       audio.play();
-    },
-    reduceMeanings() {
-      this.$forceUpdate();
-    },
-    addLS() {
-      this.storage.setItem('content', JSON.stringify(this.content));
-    },
-    parseLS() {
-      this.content = JSON.parse(this.storage.getItem('content'));
     }
   },
+  computed: mapGetters(['allWords']),
   watch: {
-    async wordlist(update) {
-      update.map(async word => {
+    async allWords(update) {
+      update.words.map(async word => {
         if (!this.content[word]) {
           const data = await this.fetchWord(word);
           this.content[word] = data;

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { upload } from './upload.service';
+import { mapGetters, mapActions } from 'vuex';
 
 const STATUS_INITIAL = 0;
 const STATUS_UPLOADING = 1;
@@ -56,6 +56,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['allWords']),
     isInitial() {
       return this.currentStatus === STATUS_INITIAL;
     },
@@ -73,6 +74,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchWords']),
     reset() {
       this.currentStatus = STATUS_INITIAL;
       this.file = null;
@@ -81,16 +83,8 @@ export default {
     },
     send(formData) {
       this.currentStatus = STATUS_UPLOADING;
-      upload(formData)
-        .then(res => {
-          this.uploaded = res.success;
-          this.currentStatus = STATUS_UPLOADED;
-          this.$emit('populate-words', res.words);
-        })
-        .catch(err => {
-          this.uploadError = err.response;
-          this.currentStatus = STATUS_FAILED;
-        });
+      this.fetchWords(formData);
+      this.currentStatus = STATUS_UPLOADED;
     },
     fileChange(fieldName, fileList) {
       const formData = new FormData();

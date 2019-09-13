@@ -1,74 +1,16 @@
 <template>
   <b-container class="words">
-    <Card :wordlist="wordlist" />
-
-    <!-- temp shit -->
-    <!-- <div>
-      <input v-model="skyengword" type="text" />
-      <button @click="skyeng">push {{skyengword}}</button>
-    </div>-->
-    <!-- temp shit end -->
+    <Card />
   </b-container>
 </template>
 
 <script>
-import axios from 'axios';
-
 import Card from './card';
 
 export default {
   name: 'Wordlist',
   components: {
     Card
-  },
-  data() {
-    return {
-      skyresult: null,
-      skyengword: null,
-      detailText: null,
-      detailLoading: false,
-      active: false,
-      detail: {},
-      isVisible: false,
-      wordlist: ['sky', 'abuse']
-    };
-  },
-  props: ['words'],
-  methods: {
-    displayWordDetail: function(word) {
-      this.detailText = this.detail[word];
-    },
-    handleWordClick: function(word) {
-      this.displayWordDetail(word);
-    },
-    getSkyeng(word) {
-      return axios
-        .get(`/api/dictionary/get/${word}`)
-        .then(res => res.data)
-        .then(res => res)
-        .catch(err => err);
-    },
-    skyeng() {
-      this.wordlist.push(this.skyengword);
-    }
-    // async insertWord(word) {
-    //   const card = await this.getMinicard(word);
-    //   const list = await this.getWordList(word);
-    //   const detail = { ...this.detail[word], card, list };
-    //   this.detail[word] = detail;
-    //   this.isVisible = true;
-    //   this.$forceUpdate();
-    //   return detail;
-    // }
-  },
-  watch: {
-    // words: async function(upd) {
-    //   await Promise.all(
-    //     upd.map(async val => {
-    //       const detail = await this.insertWord(val);
-    //     })
-    //   );
-    // }
   }
 };
 </script>
